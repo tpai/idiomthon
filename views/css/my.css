@@ -25,7 +25,7 @@ body {
 	padding-top: 50px;
 	width: 200px;
 	height: 100px;
-	background: url(../images/spit.png) no-repeat;
+	background: url(../images/spits.png) no-repeat;
 	background-size: 100% 100%;
 }
 
@@ -41,10 +41,7 @@ body {
 
 #scoreTable tr td {
 	color: white;
-	text-align: left;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 5px;
+	text-align: center;
 	padding-right: 5px;
 }
 

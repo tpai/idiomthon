@@ -43,7 +43,6 @@
 			questions += "<div class='q'>"+str+"</div>";
 		}
 
-		// <tr><td class="q">邯鄲學步</td><td class="q">一手遮天</td><td class="q">天崩地裂</td><td class="q">英明神武</td></tr>
 		$("#questions").html(questions);
 	});
 
@@ -52,7 +51,14 @@
 		var str = "";
 		$.each(data, function (key, val) {
 			if(key <= 10) {
-				str += "<tr><td>"+(key+1)+".</td><td>"+val.name + "</td><td>" + val.score + "</td></tr>";
+				var no = "";
+				if(key < 3) {
+					no = "<img src='images/no"+(key+1)+".png' />";
+				}
+				else {
+					no = (key+1)+".";
+				}
+				str += "<tr><td>"+no+"</td><td>"+val.name + "</td><td>" + val.score + "</td></tr>";
 			}
 		});
 		$("#scoreTable").html(str);
