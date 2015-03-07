@@ -19,13 +19,33 @@ body {
 	clear: both;
 }
 
-.q {
+.q1 {
 	font-size: 40px;
 	float: left;
 	padding-top: 50px;
 	width: 200px;
 	height: 100px;
-	background: url(../images/spits.png) no-repeat;
+	background: url(../images/spits1.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.q2 {
+	font-size: 40px;
+	float: left;
+	padding-top: 50px;
+	width: 200px;
+	height: 100px;
+	background: url(../images/spits2.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.q3 {
+	font-size: 40px;
+	float: left;
+	padding-top: 50px;
+	width: 200px;
+	height: 100px;
+	background: url(../images/spits3.png) no-repeat;
 	background-size: 100% 100%;
 }
 

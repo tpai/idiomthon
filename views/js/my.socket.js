@@ -34,26 +34,47 @@
 		.on("disconnect", function () { console.log("disconnect!"); });
 
 	var answers;
+	var pattern1 = [
+		[0, 9, 9, 9], [9, 1, 9, 9], [9, 9, 2, 9], [9, 9, 9, 3]
+	];
+	var pattern2 = [
+		[0, 1, 9, 9], [9, 1, 2, 9], [9, 9, 2, 3], 
+		[0, 9, 2, 9], [0, 9, 9, 3], [9, 1, 9, 3]
+	];
+	var pattern3 = [
+		[0, 1, 2, 9], [0, 1, 9, 3], [0, 9, 2, 3], [9, 1, 2, 3]
+	];
 
 	socket.on("questionUpdate", function(data) {
+
 		answers = data;
-
-		var pattern = [
-			[0, 1, 9, 9], [9, 1, 2, 9], [9, 9, 2, 3], 
-			[0, 9, 2, 9], [0, 9, 9, 3], [9, 1, 9, 3]
-		]
-
+		
 		var questions = "";
 
 		for(var h=0;h<data.length;h++) {
 			var each = data[h].split("");
-			var rand = Math.floor((Math.random() * 6));
+			switch(each[4]) {
+				case "^": pattern = pattern1; break;
+				case "?": pattern = pattern2; break;
+				case "!": pattern = pattern3; break;
+			}
+			var rand = Math.floor((Math.random() * pattern.length));
 			var str = "";
 			for(var i=0;i<4;i++) {
 				if(i == pattern[rand][i])str += "O";
 				else str += each[i];
 			}
-			questions += "<div class='q'>"+str+"</div>";
+			switch(each[4]) {
+				case "^":
+					questions += "<div id='que"+h+"' class='q1'>"+str+"</div>";
+					break;
+				case "?":
+					questions += "<div id='que"+h+"' class='q2'>"+str+"</div>";
+					break;
+				case "!":
+					questions += "<div id='que"+h+"' class='q3'>"+str+"</div>";
+					break;
+			}
 		}
 
 		$("#questions").html(questions);
@@ -80,8 +101,29 @@
 	$("#form").submit(function( event ) {
 		var answer = $("#answer").prop("value")
 		$("#answer").prop("value", "")
-		if(answers.indexOf(answer) != -1) {
-			socket.emit("correct", { user: user, answer: answer });
+		
+		var ansIndex = -1
+		if(answers.indexOf(answer+"^") != -1) {
+			ansIndex = answers.indexOf(answer+"^");
+			answer += "^";
+		}
+		else if(answers.indexOf(answer+"?") != -1) {
+			ansIndex = answers.indexOf(answer+"?");
+			answer += "?";
+		}
+		else if(answers.indexOf(answer+"!") != -1) {
+			ansIndex = answers.indexOf(answer+"!");
+			answer += "!";
+		}
+		
+		if(ansIndex != -1) {
+			var score;
+			var className = $("#que"+ansIndex).prop("class");
+			
+			if(className == "q1")score = 2;
+			else if(className == "q2")score = 3;
+			else if(className == "q3")score = 4;
+			socket.emit("correct", { user: user, answer: answer, score: score });
 		}
 		else {
 			socket.emit("wrong", { user: user });	

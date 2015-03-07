@@ -12,6 +12,7 @@ app.use(express.static(__dirname + '/views'));
 
 var data = [];
 var leaderboard = [], globalQuestion = [];
+var counter = 0
 
 io.on('connection', function (socket) {
 
@@ -29,7 +30,13 @@ io.on('connection', function (socket) {
 		if(data.length > 0 && globalQuestion.length < 9) {
 			var str = data.pop();
 			if(globalQuestion.indexOf(str) == -1) {
-				globalQuestion.push(str);
+				counter ++;
+				if(counter % 20 == 0)
+					globalQuestion.push(str+"!");
+				else if(counter % 10 == 0)
+					globalQuestion.push(str+"?");
+				else
+					globalQuestion.push(str+"^");
 			}
 		}
 		else if(data.length == 0) {
@@ -54,7 +61,7 @@ io.on('connection', function (socket) {
 		// add score
 		for(var i=0;i<leaderboard.length;i++) {
 			if(leaderboard[i].id == data.user.id) {
-				leaderboard[i].score += 2;
+				leaderboard[i].score += data.score;
 				console.log(username+"'s score: "+leaderboard[i].score);
 				break;
 			}
@@ -62,7 +69,9 @@ io.on('connection', function (socket) {
 	});
 
 	socket.on("wrong", function (data) {
+
 		console.log(data.user.name+"'s answer is wrong!");
+
 		// minus score
 		for(var i=0;i<leaderboard.length;i++) {
 			if(leaderboard[i].id == data.user.id) {
