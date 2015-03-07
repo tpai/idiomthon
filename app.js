@@ -23,7 +23,6 @@ io.on('connection', function (socket) {
 				else if(i == leaderboard.length - 1)leaderboard.push(user);
 			}
 		}
-		console.log(leaderboard);
 	});
 
 	setInterval(function () {
@@ -35,7 +34,6 @@ io.on('connection', function (socket) {
 		}
 		else if(data.length == 0) {
 			data = shuffle(require('./custom/readfile').getAll());
-			console.log(data);
 		}
 	}, 3000);
 

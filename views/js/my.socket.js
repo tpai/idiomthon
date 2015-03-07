@@ -1,7 +1,20 @@
 (function() {
 
-	var id = new Date().getTime().toString();
-	var username = prompt("Please enter your name:", "Guest"+id.substr(-5, 5));
+	var id, username;
+
+	if(
+		localStorage.idiomthonUserId == null &&
+		localStorage.idiomthonUserName == null
+	) {
+		id = new Date().getTime().toString();
+		username = prompt("Please enter your name:", "Guest"+id.substr(-5, 5));
+		localStorage.idiomthonUserId = id;
+		localStorage.idiomthonUserName = username;
+	}
+	else {
+		id = localStorage.idiomthonUserId;
+		username = localStorage.idiomthonUserName;
+	}
 	
 	var domain = window.location.host;
 	var socket = io.connect(domain, { "force new connection": true });
