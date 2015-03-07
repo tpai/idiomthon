@@ -1,0 +1,56 @@
+body {
+	margin: 0px;
+}
+
+#questionZone {
+	width: 80%;
+	color: white;
+	text-align: center;
+	vertical-align: top;
+	background: url(../images/background.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+#questions {
+	padding-top: 30px;
+	padding-left: 200px;
+	display: block;
+	overflow: hidden;
+	clear: both;
+}
+
+.q {
+	font-size: 40px;
+	float: left;
+	padding-top: 50px;
+	width: 200px;
+	height: 100px;
+	background: url(../images/spit.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+#leaderboardZone {
+	vertical-align: top;
+	background: url(../images/leaderboard.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+#scoreTable {
+	padding-top: 15px;
+}
+
+#scoreTable tr td {
+	color: white;
+	text-align: left;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#formZone {
+	height: 45px;
+	text-align: left;
+	vertical-align: bottom;
+	background-color: yellow;
+}
