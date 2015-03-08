@@ -133,13 +133,7 @@
 			socket.emit("wrong", { user: user });	
 		}
 		$("#addScoreShow").text((score>0)?"+"+score:score);
-		$("#addScoreShow").bPopup(
-			{
-				position: [125, 200], 
-				autoClose: 500, 
-				modalColor: "none"
-			}
-		);
+		$("#addScoreShow").show().delay(500).fadeOut();
 		event.preventDefault();
 	});
 

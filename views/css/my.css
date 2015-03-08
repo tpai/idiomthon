@@ -5,6 +5,7 @@ body {
 #questionZone {
 	width: 80%;
 	color: white;
+	position: relative;
 	text-align: center;
 	vertical-align: top;
 	background: url(../images/background.png) no-repeat;
@@ -74,5 +75,8 @@ body {
 
 #addScoreShow {
 	display: none;
+	position: absolute;
+	left: 80px;
+	top: 180px;
 	font-size: 100px;
 }
