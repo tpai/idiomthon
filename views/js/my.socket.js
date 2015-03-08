@@ -24,13 +24,14 @@
 		score: 0
 	};
 
-	$("#name").text(username);
-	user.id = id;
-	user.name = username;
-	socket.emit("userJoin", user);
-
 	socket
-		.on("connect", function () { console.log("connect!"); })
+		.on("connect", function () {
+			$("#name").text(username);
+			user.id = id;
+			user.name = username;
+			socket.emit("userJoin", user);
+			console.log("connect!");
+		})
 		.on("disconnect", function () { console.log("disconnect!"); });
 
 	var answers;
@@ -121,13 +122,24 @@
 			var className = $("#que"+ansIndex).prop("class");
 			
 			if(className == "q1")score = 2;
-			else if(className == "q2")score = 3;
-			else if(className == "q3")score = 4;
+			else if(className == "q2")score = 4;
+			else if(className == "q3")score = 6;
+			$("#addScoreShow").css("color", "green");
 			socket.emit("correct", { user: user, answer: answer, score: score });
 		}
 		else {
+			score = -1;
+			$("#addScoreShow").css("color", "red");
 			socket.emit("wrong", { user: user });	
 		}
+		$("#addScoreShow").text((score>0)?"+"+score:score);
+		$("#addScoreShow").bPopup(
+			{
+				position: [125, 200], 
+				autoClose: 500, 
+				modalColor: "none"
+			}
+		);
 		event.preventDefault();
 	});
 

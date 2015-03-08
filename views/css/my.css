@@ -69,5 +69,10 @@ body {
 	height: 45px;
 	text-align: left;
 	vertical-align: bottom;
-	background-color: yellow;
+	background-color: white;
+}
+
+#addScoreShow {
+	display: none;
+	font-size: 100px;
 }
