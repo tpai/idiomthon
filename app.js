@@ -2,7 +2,7 @@ var express = require('express'),
 	app = express(),
 	http = require('http').createServer(app),
 	io = require('socket.io')(http),
-	port = (process.env.PORT || 5000);
+	port = (process.env.PORT || 8080);
 
 http.listen(port);
 
@@ -40,7 +40,7 @@ io.on('connection', function (socket) {
 			}
 		}
 		else if(data.length == 0) {
-			data = shuffle(require('./custom/readfile').getAll());
+			data = shuffle(require('./readfile').getAll());
 		}
 	}, 3000);
 

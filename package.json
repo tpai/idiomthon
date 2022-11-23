@@ -4,8 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm install && node app.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -14,7 +13,7 @@
   "keywords": [
     "idiom"
   ],
-  "author": "tonypai",
+  "author": "Tony Pai",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tpai/idiomthon/issues"
@@ -23,8 +22,5 @@
   "dependencies": {
     "express": "^4.12.2",
     "socket.io": "^1.3.5"
-  },
-  "engines": {
-    "node": "0.10.x"
   }
 }
